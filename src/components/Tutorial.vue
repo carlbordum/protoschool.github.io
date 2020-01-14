@@ -29,7 +29,7 @@
                 :index="index + 1" />
             </li>
           </template>
-          <LessonLink data-cy="lesson-link-resources" v-if="tutorial.resources" :to="resourcesLink" name="More to explore" />
+          <LessonLink data-cy="lesson-link-resources" v-if="tutorial.resources" :to="resourcesLink" :lesson="resourcesLesson" />
         </ul>
       </div>
     </div>
@@ -41,6 +41,11 @@ import LessonLink from '../components/LessonLink.vue'
 import { isTutorialPassed } from '../utils/tutorials'
 import ipfsLogo from '../static/images/ipfs.svg'
 import libp2pLogo from '../static/images/libp2p.svg'
+
+const resourcesLesson = {
+  "title": "More to explore",
+  "types": []
+}
 
 export default {
   name: 'Tutorial',
@@ -54,7 +59,8 @@ export default {
   data: () => {
     return {
       ipfsLogo: ipfsLogo,
-      libp2pLogo: libp2pLogo
+      libp2pLogo: libp2pLogo,
+      resourcesLesson: resourcesLesson
     }
   },
   computed: {
