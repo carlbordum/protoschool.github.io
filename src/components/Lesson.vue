@@ -2,6 +2,11 @@
   <div :class="{'overflow-hidden': expandExercise}">
     <Header/>
     <div class="container center-l mw7-l ph2">
+      <img
+        :src="lessonType.icon"
+        :alt="lessonType.alt"
+        style="height: 54px" />
+      <!-- replace with new component <TypeIcon :lesson="lesson" /> -->
       <section class="mw7 center mt3 pa3">
         <Breadcrumbs
           :isResources="isResources"
@@ -120,6 +125,10 @@ import { EVENTS } from '../static/countly'
 import { deriveShortname } from '../utils/paths'
 import { getCurrentTutorial, isTutorialPassed } from '../utils/tutorials'
 import tutorialsList from '../static/tutorials.json'
+import codeIcon from '../static/images/code.svg'
+import readingIcon from '../static/images/reading.svg'
+import multipleChoiceIcon from '../static/images/multiple_choice.svg'
+
 
 const MAX_EXEC_TIMEOUT = 5000
 
@@ -254,7 +263,7 @@ export default {
       const split = this.$route.path.split('/')[1]
       for (const t in tutorialsList) {
         if (tutorialsList[t].url === split) {
-          return tutorialsList[t].lessons.find((e, idx) => (`/${tutorialsList[t].url}/${(idx + 1).toString().padStart(2, 0)}`) === path)
+          return tutorialsList[t].lessons.find((e, idx) => (`/${tutorialsList[t].url}/${(idx + 1).toString().padStart(2, 0)}`) === path).title
         }
       }
       return ''
@@ -281,6 +290,15 @@ export default {
       const basePath = this.$route.path.slice(0, -2)
       const hasResources = this.$router.resolve(basePath + 'resources').route.name !== '404'
       return this.lessonNumber === this.lessonsInTutorial && hasResources
+    },
+    lessonType: function() {
+      if (this.exercise) {
+        return { icon: codeIcon, alt: "coding icon" }
+      } else if (this.isMultipleChoiceLesson) {
+        return { icon: multipleChoiceIcon, alt: "multiple choice icon" }
+      } else {
+        return { icon: readingIcon, alt: "reading icon" }
+      }
     }
   },
   beforeCreate: function () {

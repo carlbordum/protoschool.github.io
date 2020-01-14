@@ -25,7 +25,7 @@
               <LessonLink
                 data-cy="lesson-link"
                 :to="`/${tutorial.url}/${(index + 1).toString().padStart(2, 0)}`"
-                :name="lesson"
+                :lesson="lesson"
                 :index="index + 1" />
             </li>
           </template>

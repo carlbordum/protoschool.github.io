@@ -8,22 +8,40 @@
         <img v-else-if="getLessonValue('cached' + to)" src="../static/images/in-progress.svg" alt="in progress" style="height: 1rem;"/>
         <img v-else src="../static/images/not-started.svg" alt="not yet started" style="height: 0.9rem;"/>
       </div>
-      <div class="navy fw5 mw6">{{name}}</div>
+      <div class="navy fw5 mw6">{{lesson.title}}</div>
+      <img
+        :src="lessonType.icon"
+        :alt="lessonType.alt"
+        style="height: 54px" />
     </div>
   </router-link>
 </template>
 
 <script>
+
+import codeIcon from '../static/images/code.svg'
+import readingIcon from '../static/images/reading.svg'
+import multipleChoiceIcon from '../static/images/multiple_choice.svg'
+
 export default {
   name: 'LessonLink',
   props: [
     'to',
     'index',
-    'name'
+    'lesson'
   ],
   computed: {
     isResources: function () {
       return this.to.split('/')[2] === 'resources'
+    },
+    lessonType: function() {
+      if (this.lesson.types.includes('code')) {
+        return { icon: codeIcon, alt: "coding icon" }
+      } else if (this.lesson.types.includes('multiple-choice')) {
+        return { icon: multipleChoiceIcon, alt: "multiple choice icon" }
+      } else {
+        return { icon: readingIcon, alt: "reading icon" }
+      }
     }
   },
   methods: {

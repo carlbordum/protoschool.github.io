@@ -5,11 +5,26 @@
 		"title": "Decentralized Data Structures",
 		"description": "The decentralized web relies on unique data structures and linking strategies. Learn about the benefits of hashing, content addressing, DAG and Merkle Trees!",
 		"lessons": [
-			"Data structures",
-			"The centralized web: Location-based addressing",
-			"The decentralized web: Content addressing",
-			"Cryptographic hashing and Content Identifiers (CIDs)",
-			"Merkle trees and directed acyclic graphs (DAG)"
+			{
+				"title": "Data structures",
+				"types": []
+			},
+			{
+				"title": "The centralized web: Location-based addressing",
+				"types": []
+			},
+			{
+				"title": "The decentralized web: Content addressing",
+				"types": []
+			},
+			{
+				"title": "Cryptographic hashing and Content Identifiers (CIDs)",
+				"types": []
+			},
+			{
+				"title": "Merkle trees and directed acyclic graphs (DAG)",
+				"types": []
+			}
 		],
 		"resources": [
 			{
@@ -74,9 +89,18 @@
 		"title": "P2P Data Links with Content Addressing",
 		"description": "Store, fetch, and create verifiable links between peer-hosted datasets using the IPFS DAG API and CIDs. It’s graphs with friends!",
 		"lessons": [
-			"Create a node and return a Content Identifier (CID)",
-			"Create a new node that's linked to an old one",
-			"Read nested data using link"
+			{
+				"title": "Create a node and return a Content Identifier (CID)",
+				"types": ["code"]
+			},
+			{
+				"title": "Create a new node that's linked to an old one",
+				"types": ["code"]
+			},
+			{
+				"title": "Read nested data using link",
+				"types": ["code"]
+			}
 		],
 		"resources": [
 			{
@@ -115,14 +139,36 @@
 		"project": "IPFS",
 		"title": "Blogging on the Decentralized Web",
 		"description": "Cool content addresses don't change.",
+
 		"lessons": [
-			"Link an author to a blog post using its CID",
-			"Update posts with tags and watch their CIDs change",
-			"Build a tag cloud with arrays of links",
-			"Add a new blog post linked to an author and tags",
-			"Add a new tag linked to multiple blog posts",
-			"List posts chronologically with a chain of links",
-			"Traverse through all posts, starting with the most recent"
+			{
+				"title": "Link an author to a blog post using its CID",
+				"types": ["code"]
+			},
+			{
+				"title": "Update posts with tags and watch their CIDs change",
+				"types": ["code"]
+			},
+			{
+				"title": "Build a tag cloud with arrays of links",
+				"types": ["code"]
+			},
+			{
+				"title": "Add a new blog post linked to an author and tags",
+				"types": ["code"]
+			},
+			{
+				"title": "Add a new tag linked to multiple blog posts",
+				"types": ["code"]
+			},
+			{
+				"title": "List posts chronologically with a chain of links",
+				"types": ["code"]
+			},
+			{
+				"title": "Traverse through all posts, starting with the most recent",
+				"types": ["code"]
+			}
 		],
 		"resources": [
 			{
@@ -156,17 +202,50 @@
 		"title": "IPFS: Mutable File System",
 		"description": "The Mutable File System (MFS) lets you work with files and directories as if you were using a traditional name-based file system.",
 		"lessons": [
-			"Introducing IPFS",
-			"Check the status of a directory",
-			"Working with files in ProtoSchool",
-			"Add a file to MFS",
-			"View the contents of a directory",
-			"See how CIDs change as data changes",
-			"Create a directory",
-			"Move a file or directory",
-			"Copy a file or directory",
-			"Read the contents of a file",
-			"Remove a file or directory"
+			{
+				"title": "Introducing IPFS",
+				"types": []
+			},
+			{
+				"title": "Check the status of a directory",
+				"types": ["code"]
+			},
+			{
+				"title": "Working with files in ProtoSchool",
+				"types": ["code"]
+			},
+			{
+				"title": "Add a file to MFS",
+				"types": ["code"]
+			},
+			{
+				"title": "View the contents of a directory",
+				"types": ["code"]
+			},
+			{
+				"title": "See how CIDs change as data changes",
+				"types": ["code"]
+			},
+			{
+				"title": "Create a directory",
+				"types": ["code"]
+			},
+			{
+				"title": "Move a file or directory",
+				"types": ["code"]
+			},
+			{
+				"title": "Copy a file or directory",
+				"types": ["code"]
+			},
+			{
+				"title": "Read the contents of a file",
+				"types": ["code"]
+			},
+			{
+				"title": "Remove a file or directory",
+				"types": ["code"]
+			}
 		],
 		"resources": [
 			{
@@ -219,14 +298,38 @@
 		"title": "IPFS: Regular Files API",
 		"description": "The IPFS Regular Files API provides a way to store and share files in a peer-to-peer storage system.",
 		"lessons": [
-			"Introducing the Files API",
-			"Working with files in ProtoSchool",
-			"Add a file",
-			"Read the contents of a file",
-			"Add files in a directory",
-			"List the files in a directory",
-			"Read a file in a directory",
-			"Get all of the files in a directory"
+			{
+				"title": "Introducing the Files API",
+				"types": []
+			},
+			{
+				"title": "Working with files in ProtoSchool" ,
+				"types": ["code"]
+			},
+			{
+				"title": "Add a file" ,
+				"types": ["code"]
+			},
+			{
+				"title": "Read the contents of a file" ,
+				"types": ["code"]
+			},
+			{
+				"title": "Add files in a directory" ,
+				"types": ["code"]
+			},
+			{
+				"title": "List the files in a directory" ,
+				"types": ["code"]
+			},
+			{
+				"title": "Read a file in a directory" ,
+				"types": ["code"]
+			},
+			{
+				"title": "Get all of the files in a directory",
+				"types": ["code"]
+			}
 		],
 		"resources": [
 			{
