@@ -6,30 +6,30 @@ export const getCurrentTutorial = route => (
 )
 
 // if accessing from within the lesson via route
-// export const getCurrentLesson = (route) => {
-//   let lesson
-//   if (route.path.includes('/resources')) {
-//     lesson = {
-//       title: 'Resources',
-//       types: []
-//     }
-//   } else {
-//     lesson = getCurrentTutorial(route).lessons[route.props.default.lessonId - 1]
-//     // get lesson object from tutorials.json
-//   }
-//   // add more useful properties to it // BUT MAKE SURE THEY WORK FOR RESOURCES PAGE
-//   // lesson.path = `/${getCurrentTutorial(route).url}/${route.props.default.lessonId}`
-//   return lesson
-// }
+export const getCurrentLesson = (route) => {
+  let lesson
+  if (route.path.includes('/resources')) {
+    lesson = {
+      title: 'Resources',
+      types: []
+    }
+  } else {
+    // get lesson object from tutorials.json
+    lesson = getCurrentTutorial(route).lessons[route.props.default.lessonId - 1]
+  }
+  // add more useful properties to it // BUT MAKE SURE THEY WORK FOR RESOURCES PAGE
+  // lesson.path = `/${getCurrentTutorial(route).url}/${route.props.default.lessonId}`
+  return lesson
+}
 
 export const getTutorialFullUrl = tutorial => `${window.location.origin}/${tutorial.url}`
 
 export const isTutorialPassed = tutorial => !!localStorage[`passed/${tutorial.url}`]
 
 // can access from anywhere with tutorialId
-// export const getAllLessonsInTutorial = tutorialId => {
-//   return tutorialsList[tutorialId].lessons
-// }
+export const getAllLessonsInTutorial = tutorialId => {
+  return tutorialsList[tutorialId].lessons
+}
 
 // can access from anywhere with tutorialId
 export const getTutorialType = tutorialId => {

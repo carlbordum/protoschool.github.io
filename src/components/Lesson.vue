@@ -19,7 +19,7 @@
             :tutorial="tutorial"
             class="mv4"
         />
-        <h1>{{isResources ? 'Resources' : lessonTitle}}</h1>
+        <h1>{{isResources ? 'Resources' : lesson.title}}</h1>
         <Concepts v-if="concepts" :parsedConcepts="parsedConcepts" />
         <Resources v-if="isResources" :data="resources" />
         <div v-else class="lesson-text lh-copy" v-html="parsedText"></div>
@@ -123,7 +123,7 @@ import Validator from './Validator.vue'
 import CongratulationsCallout from './CongratulationsCallout.vue'
 import { EVENTS } from '../static/countly'
 import { deriveShortname } from '../utils/paths'
-import { getCurrentTutorial, isTutorialPassed } from '../utils/tutorials'
+import { getCurrentTutorial, isTutorialPassed, getCurrentLesson } from '../utils/tutorials'
 import tutorialsList from '../static/tutorials.json'
 import codeIcon from '../static/images/code.svg'
 import readingIcon from '../static/images/reading.svg'
@@ -218,8 +218,11 @@ export default {
   },
   data: self => {
     const tutorial = getCurrentTutorial(self.$route.matched[0])
+    const lesson = getCurrentLesson((self.$route.matched[0]))
 
     return {
+      tutorial,
+      lesson,
       isResources: self.$attrs.isResources,
       resources: self.$attrs.resources,
       text: self.$attrs.text,
@@ -242,8 +245,7 @@ export default {
       parsedConcepts: marked(self.$attrs.concepts || ''),
       cacheKey: 'cached' + self.$route.path,
       cachedStateMsg: '',
-      tutorial,
-      tutorialPath: self.$route.path.split('/')[1],
+      tutorialPath: tutorial.url,
       tutorialShortname: deriveShortname(self.$route.path),
       isTutorialPassed: isTutorialPassed(tutorial),
       lessonKey: 'passed' + self.$route.path,
@@ -258,16 +260,6 @@ export default {
     }
   },
   computed: {
-    lessonTitle: function () {
-      const path = this.$route.path
-      const split = this.$route.path.split('/')[1]
-      for (const t in tutorialsList) {
-        if (tutorialsList[t].url === split) {
-          return tutorialsList[t].lessons.find((e, idx) => (`/${tutorialsList[t].url}/${(idx + 1).toString().padStart(2, 0)}`) === path).title
-        }
-      }
-      return ''
-    },
     lessonNumber: function () {
       return parseInt(this.$route.path.slice(this.$route.path.lastIndexOf('/') + 1), 10)
     },
@@ -321,7 +313,7 @@ export default {
       return newGithubIssueUrl({
         user: 'ProtoSchool',
         repo: 'protoschool.github.io',
-        title: `Validation Error: ${this.tutorialShortname} - Lesson ${this.lessonNumber} (${this.lessonTitle})`,
+        title: `Validation Error: ${this.tutorialShortname} - Lesson ${this.lessonNumber} (${this.lesson.title})`,
         labels: ['lesson-feedback', 'validation-error'],
         body: `If you submitted code for a lesson and received feedback indicating a validation error, you may have uncovered a bug in our lesson validation code. We've prepopulated the error type and the last code you submitted below as diagnostic clues. Feel free to add additional feedback about the lesson below before clicking "Submit new issue."
 
