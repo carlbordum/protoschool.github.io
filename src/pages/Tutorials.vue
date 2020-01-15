@@ -9,7 +9,7 @@
       </p>
     </section>
     <template v-for="(tutorial, index) in allTutorials">
-      <Tutorial :tutorial="tutorial" :key="index" />
+      <Tutorial :tutorial="tutorial" :key="index" :tutorialId="tutorialId(index)" />
     </template>
   </div>
 </template>
@@ -33,6 +33,9 @@ export default {
     return {
       tutorialsList
     }
+  },
+  methods: {
+    tutorialId: (index) => (index + 1).toString().padStart(4, '0')
   }
 }
 </script>

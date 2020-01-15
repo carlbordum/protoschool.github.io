@@ -2,7 +2,7 @@
   <router-link :to="to" class="link db pa3 bb b--white green hover-bg-washed-yellow">
     <div class="flex items-center">
       <div v-if="isResources" class="tc green ttu f6" style="min-width: 93px">Resources</div>
-      <div v-else class="tc green ttu f6" style="min-width: 93px">Lesson {{index}}</div>
+      <div v-else class="tc green ttu f6" style="min-width: 93px">Lesson {{lessonNumber}}</div>
       <div class="pr2" style="flexShrink: 0">
         <img v-if="getLessonValue('passed' + to)" src="../static/images/complete.svg" alt="complete" style="height: 1rem;"/>
         <img v-else-if="getLessonValue('cached' + to)" src="../static/images/in-progress.svg" alt="in progress" style="height: 1rem;"/>
@@ -27,8 +27,9 @@ export default {
   name: 'LessonLink',
   props: [
     'to',
-    'index',
-    'lesson'
+    'lessonNumber',
+    'lesson',
+    'lessonId'
   ],
   computed: {
     isResources: function () {

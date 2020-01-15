@@ -18,6 +18,10 @@
           <div class="bg-aqua br4 pa3 mb3 tutorial-tile" :key="index">
             <router-link :to="tutorial.url">
               <h3 class="ma0 f3 fw7 navy">{{tutorial.title}}</h3>
+              <img
+                :src="tutorialType(index).icon"
+                :alt="tutorialType(index).alt"
+                style="height: 54px" />
               <p class="f5 fw5 ma0 pt2 lh-copy white">{{tutorial.description}}</p>
             </router-link>
           </div>
@@ -40,6 +44,11 @@
 import Header from '../components/Header'
 import coursesList from '../static/courses.json'
 import tutorialsList from '../static/tutorials.json'
+import { getTutorialType } from '../utils/tutorials'
+
+import codeIcon from '../static/images/code.svg'
+import readingIcon from '../static/images/reading.svg'
+import multipleChoiceIcon from '../static/images/multiple_choice.svg'
 
 export default {
   name: 'home',
@@ -48,6 +57,19 @@ export default {
   },
   computed: {
     featuredTutorials: () => coursesList.featured.map((e) => tutorialsList[e])
+  },
+  methods: {
+    tutorialType: function (index) {
+      let tutorialId = (index + 1).toString().padStart(4, '0')
+      let type = getTutorialType(tutorialId)
+      if (type === 'code') {
+        return { icon: codeIcon, alt: "coding icon" }
+      } else if (type === 'multiple-choice') {
+        return { icon: multipleChoiceIcon, alt: "multiple choice icon" }
+      } else {
+        return { icon: readingIcon, alt: "reading icon" }
+      }
+    }
   }
 }
 

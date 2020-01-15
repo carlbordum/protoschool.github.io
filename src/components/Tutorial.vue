@@ -3,6 +3,7 @@
     <div class="flex items-start pv4">
       <div class="project-label flex-none tc">
         <h1 class="ma0 mb2 f3 fw4">{{tutorial.project}}</h1>
+
         <img
           :src="tutorial.project === 'libp2p' ? libp2pLogo : ipfsLogo"
           :alt="tutorial.project"
@@ -18,6 +19,10 @@
           </template>
           <span v-if="isTutorialPassed" class="ml1">🏆</span>
         </h2>
+        <img
+          :src="tutorialType.icon"
+          :alt="tutorialType.alt"
+          style="height: 54px" />
         <p class="f5 fw5 ma0 pt2 lh-copy charcoal-muted">{{tutorial.description}}</p>
         <ul class="mv4 pa0 f5" style="list-style-type: none; background: rgba(11, 58, 82, 5%)">
           <template v-for="(lesson, index) in tutorial.lessons">
@@ -26,7 +31,8 @@
                 data-cy="lesson-link"
                 :to="`/${tutorial.url}/${(index + 1).toString().padStart(2, 0)}`"
                 :lesson="lesson"
-                :index="index + 1" />
+                :lessonNumber="index + 1"
+                :lessonId="(index + 1).toString().padStart(2, 0)"/>
             </li>
           </template>
           <LessonLink data-cy="lesson-link-resources" v-if="tutorial.resources" :to="resourcesLink" :lesson="resourcesLesson" />
@@ -38,9 +44,12 @@
 
 <script>
 import LessonLink from '../components/LessonLink.vue'
-import { isTutorialPassed } from '../utils/tutorials'
+import { isTutorialPassed, getTutorialType } from '../utils/tutorials'
 import ipfsLogo from '../static/images/ipfs.svg'
 import libp2pLogo from '../static/images/libp2p.svg'
+import codeIcon from '../static/images/code.svg'
+import readingIcon from '../static/images/reading.svg'
+import multipleChoiceIcon from '../static/images/multiple_choice.svg'
 
 const resourcesLesson = {
   "title": "More to explore",
@@ -51,7 +60,8 @@ export default {
   name: 'Tutorial',
   props: {
     tutorial: Object,
-    isLanding: Boolean
+    isLanding: Boolean,
+    tutorialId: String
   },
   components: {
     LessonLink
@@ -72,6 +82,16 @@ export default {
     },
     isTutorialPassed: function () {
       return isTutorialPassed(this.tutorial)
+    },
+    tutorialType: function () {
+      let type = getTutorialType(this.tutorialId)
+      if (type === 'code') {
+        return { icon: codeIcon, alt: "coding icon" }
+      } else if (type === 'multiple-choice') {
+        return { icon: multipleChoiceIcon, alt: "multiple choice icon" }
+      } else {
+        return { icon: readingIcon, alt: "reading icon" }
+      }
     }
   }
 }
