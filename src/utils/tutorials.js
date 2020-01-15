@@ -1,21 +1,20 @@
 import tutorialsList from '../static/tutorials.json'
 
-// if accessing from a tutorial itself (incl landing page, lessons, resources) via route
-export const getCurrentTutorial = route => (
-  route.props && route.props.default && route.props.default.tutorialId && tutorialsList[route.props.default.tutorialId]
-)
-
+// via tutorialId
+export const getCurrentTutorial = tutorialId => {
+  return tutorialsList[tutorialId]
+}
 // if accessing from within the lesson via route
-export const getCurrentLesson = (route) => {
+export const getCurrentLesson = (tutorialId, lessonId) => {
   let lesson
-  if (route.path.includes('/resources')) {
+  if (!lessonId) {
     lesson = {
       title: 'Resources',
       types: []
     }
   } else {
     // get lesson object from tutorials.json
-    lesson = getCurrentTutorial(route).lessons[route.props.default.lessonId - 1]
+    lesson = getCurrentTutorial(tutorialId).lessons[(lessonId - 1)]
   }
   // add more useful properties to it // BUT MAKE SURE THEY WORK FOR RESOURCES PAGE
   // lesson.path = `/${getCurrentTutorial(route).url}/${route.props.default.lessonId}`

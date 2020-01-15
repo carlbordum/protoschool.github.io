@@ -127,7 +127,6 @@ import CongratulationsCallout from './CongratulationsCallout.vue'
 import { EVENTS } from '../static/countly'
 import { deriveShortname } from '../utils/paths'
 import { getCurrentTutorial, isTutorialPassed, getCurrentLesson } from '../utils/tutorials'
-import tutorialsList from '../static/tutorials.json'
 import codeIcon from '../static/images/code.svg'
 import readingIcon from '../static/images/reading.svg'
 import multipleChoiceIcon from '../static/images/multiple_choice.svg'
@@ -220,12 +219,20 @@ export default {
     CongratulationsCallout
   },
   data: self => {
-    const tutorial = getCurrentTutorial(self.$route.matched[0])
-    const lesson = getCurrentLesson((self.$route.matched[0]))
+    const tutorial = getCurrentTutorial(self.$attrs.tutorialId)
+    const resourcesLesson =  {
+          title: 'Resources',
+          types: []
+        }
+    console.log('isResources', self.$attrs.isResources)
+    //const lesson = getCurrentLesson(self.$attrs.tutorialId, (self.$attrs.lessonId || null))
+    const lesson = self.$attrs.isResources ? resourcesLesson : getCurrentLesson(self.$attrs.tutorialId, self.$attrs.lessonId)
 
     return {
-      tutorial,
       lesson,
+      tutorial,
+      lessonId: self.$attrs.lessonId,
+      tutorialId: self.$attrs.tutorialId,
       isResources: self.$attrs.isResources,
       resources: self.$attrs.resources,
       text: self.$attrs.text,
@@ -264,10 +271,10 @@ export default {
   },
   computed: {
     lessonNumber: function () {
-      return parseInt(this.$route.path.slice(this.$route.path.lastIndexOf('/') + 1), 10)
+      return parseInt(this.lessonId, 10)
     },
     lessonIssueUrl: function () {
-      return encodeURI(`https://github.com/ProtoSchool/protoschool.github.io/issues/new?assignees=&labels=lesson-feedback&template=lesson-feedback.md&title=Lesson+Feedback%3A+${this.tutorialShortname}+-+Lesson+${this.lessonNumber}+(${this.lessonTitle})`)
+      return encodeURI(`https://github.com/ProtoSchool/protoschool.github.io/issues/new?assignees=&labels=lesson-feedback&template=lesson-feedback.md&title=Lesson+Feedback%3A+${this.tutorialShortname}+-+Lesson+${this.lessonNumber}+(${this.lesson.title})`)
     },
     tutorialIssueUrl: function () {
       return encodeURI(`https://github.com/ProtoSchool/protoschool.github.io/issues/new?assignees=&labels=tutorial-feedback&template=tutorial-feedback.md&title=Tutorial+Feedback%3A+${this.tutorialShortname}`)
