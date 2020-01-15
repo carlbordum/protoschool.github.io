@@ -2,8 +2,6 @@
   <Lesson
   :lessonId="lessonId"
   :tutorialId="tutorialId"
-  :lessonId="lessonId"
-  :tutorialId="tutorialId"
   :text="text" />
 </template>
 

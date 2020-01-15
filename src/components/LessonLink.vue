@@ -37,13 +37,13 @@ export default {
     isResources: function () {
       return this.to.split('/')[2] === 'resources'
     },
-    lessonType: function() {
+    lessonType: function () {
       if (this.lesson.types.includes('code')) {
-        return { icon: codeIcon, alt: "coding icon" }
+        return { icon: codeIcon, alt: 'coding icon' }
       } else if (this.lesson.types.includes('multiple-choice')) {
-        return { icon: multipleChoiceIcon, alt: "multiple choice icon" }
+        return { icon: multipleChoiceIcon, alt: 'multiple choice icon' }
       } else {
-        return { icon: readingIcon, alt: "reading icon" }
+        return { icon: readingIcon, alt: 'reading icon' }
       }
     }
   },

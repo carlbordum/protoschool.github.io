@@ -45,7 +45,7 @@ export default {
       tutorialId: self.$attrs.tutorialId,
       text,
       question,
-      choices 
+      choices
     }
   }
 }

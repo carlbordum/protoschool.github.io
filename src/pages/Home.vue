@@ -65,11 +65,11 @@ export default {
       let tutorialId = (index + 1).toString().padStart(4, '0')
       let type = getTutorialType(tutorialId)
       if (type === 'code') {
-        return { icon: codeIcon, alt: "coding icon" }
+        return { icon: codeIcon, alt: 'coding icon' }
       } else if (type === 'multiple-choice') {
-        return { icon: multipleChoiceIcon, alt: "multiple choice icon" }
+        return { icon: multipleChoiceIcon, alt: 'multiple choice icon' }
       } else {
-        return { icon: readingIcon, alt: "reading icon" }
+        return { icon: readingIcon, alt: 'reading icon' }
       }
     }
   }

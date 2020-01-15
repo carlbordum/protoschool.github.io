@@ -56,8 +56,8 @@ import readingIcon from '../static/images/reading.svg'
 import multipleChoiceIcon from '../static/images/multiple_choice.svg'
 
 const resourcesLesson = {
-  "title": "More to explore",
-  "types": []
+  'title': 'More to explore',
+  'types': []
 }
 
 export default {
@@ -90,11 +90,11 @@ export default {
     tutorialType: function () {
       let type = getTutorialType(this.tutorialId)
       if (type === 'code') {
-        return { icon: codeIcon, alt: "coding icon" }
+        return { icon: codeIcon, alt: 'coding icon' }
       } else if (type === 'multiple-choice') {
-        return { icon: multipleChoiceIcon, alt: "multiple choice icon" }
+        return { icon: multipleChoiceIcon, alt: 'multiple choice icon' }
       } else {
-        return { icon: readingIcon, alt: "reading icon" }
+        return { icon: readingIcon, alt: 'reading icon' }
       }
     }
   }

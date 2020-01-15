@@ -131,7 +131,6 @@ import codeIcon from '../static/images/code.svg'
 import readingIcon from '../static/images/reading.svg'
 import multipleChoiceIcon from '../static/images/multiple_choice.svg'
 
-
 const MAX_EXEC_TIMEOUT = 5000
 
 const hljs = require('highlight.js/lib/highlight.js')
@@ -220,12 +219,11 @@ export default {
   },
   data: self => {
     const tutorial = getCurrentTutorial(self.$attrs.tutorialId)
-    const resourcesLesson =  {
-          title: 'Resources',
-          types: []
-        }
+    const resourcesLesson = {
+      title: 'Resources',
+      types: []
+    }
     console.log('isResources', self.$attrs.isResources)
-    //const lesson = getCurrentLesson(self.$attrs.tutorialId, (self.$attrs.lessonId || null))
     const lesson = self.$attrs.isResources ? resourcesLesson : getCurrentLesson(self.$attrs.tutorialId, self.$attrs.lessonId)
 
     return {
@@ -293,13 +291,13 @@ export default {
       const hasResources = this.$router.resolve(basePath + 'resources').route.name !== '404'
       return this.lessonNumber === this.lessonsInTutorial && hasResources
     },
-    lessonType: function() {
+    lessonType: function () {
       if (this.exercise) {
-        return { icon: codeIcon, alt: "coding icon" }
+        return { icon: codeIcon, alt: 'coding icon' }
       } else if (this.isMultipleChoiceLesson) {
-        return { icon: multipleChoiceIcon, alt: "multiple choice icon" }
+        return { icon: multipleChoiceIcon, alt: 'multiple choice icon' }
       } else {
-        return { icon: readingIcon, alt: "reading icon" }
+        return { icon: readingIcon, alt: 'reading icon' }
       }
     }
   },

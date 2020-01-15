@@ -67,7 +67,7 @@ export default {
       text,
       validate,
       code,
-     modules,
+      modules,
       exercise,
       solution
     }
