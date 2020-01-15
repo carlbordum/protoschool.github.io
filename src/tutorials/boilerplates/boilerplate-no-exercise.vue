@@ -1,5 +1,10 @@
 <template>
-  <Lesson :text="text" />
+  <Lesson
+  :lessonId="lessonId"
+  :tutorialId="tutorialId"
+  :lessonId="lessonId"
+  :tutorialId="tutorialId"
+  :text="text" />
 </template>
 
 <script>
@@ -10,8 +15,12 @@ export default {
   components: {
     Lesson
   },
-  data: () => {
-    return { text }
+  data: (self => {
+    return {
+      lessonId: self.$attrs.lessonId,
+      tutorialId: self.$attrs.tutorialId,
+      text
+    }
   }
 }
 </script>
