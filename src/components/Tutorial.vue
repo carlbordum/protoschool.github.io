@@ -10,19 +10,23 @@
           style="height: 54px" />
       </div>
       <div class="w-100">
-        <h2 class="ma0 f3 fw5">
-          <template v-if="isLanding !== true">
-            <router-link :to="landingLink">{{tutorial.title}}</router-link>
-          </template>
-          <template v-else>
-            {{tutorial.title}}
-          </template>
-          <span v-if="isTutorialPassed" class="ml1">🏆</span>
-        </h2>
-        <img
-          :src="tutorialType.icon"
-          :alt="tutorialType.alt"
-          style="height: 54px" />
+        <div class="flex justify-between flex-row items-center">
+          <div class="flex flex-row items-center">
+            <h2 class="ma0 f3 fw5">
+              <template v-if="isLanding !== true">
+                <router-link :to="landingLink">{{tutorial.title}}</router-link>
+              </template>
+              <template v-else>
+                {{tutorial.title}}
+              </template>
+            </h2>
+            <span v-if="isTutorialPassed" class="ml2 f3">🏆</span>
+          </div>
+          <img
+            :src="tutorialType.icon"
+            :alt="tutorialType.alt"
+            class="h2 ml3"/>
+        </div>
         <p class="f5 fw5 ma0 pt2 lh-copy charcoal-muted">{{tutorial.description}}</p>
         <ul class="mv4 pa0 f5" style="list-style-type: none; background: rgba(11, 58, 82, 5%)">
           <template v-for="(lesson, index) in tutorial.lessons">

@@ -2,18 +2,21 @@
   <div :class="{'overflow-hidden': expandExercise}">
     <Header/>
     <div class="container center-l mw7-l ph2">
-      <img
-        :src="lessonType.icon"
-        :alt="lessonType.alt"
-        style="height: 54px" />
+
       <!-- replace with new component <TypeIcon :lesson="lesson" /> -->
       <section class="mw7 center mt3 pa3">
-        <Breadcrumbs
-          :isResources="isResources"
-          :tutorialShortname="tutorialShortname"
-          :lessonNumber="lessonNumber"
-          :lessonsInTutorial="lessonsInTutorial"
-          :lessonPassed="lessonPassed" />
+        <div class="flex flex-row justify-between">
+            <Breadcrumbs
+            :isResources="isResources"
+            :tutorialShortname="tutorialShortname"
+            :lessonNumber="lessonNumber"
+            :lessonsInTutorial="lessonsInTutorial"
+            :lessonPassed="lessonPassed" />
+            <img
+              :src="lessonType.icon"
+              :alt="lessonType.alt"
+              class="h2 ml3" />
+          </div>
         <CongratulationsCallout
             v-if="isResources && isTutorialPassed"
             :tutorial="tutorial"

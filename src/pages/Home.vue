@@ -17,11 +17,13 @@
         <template v-for="(tutorial, index) in featuredTutorials">
           <div class="bg-aqua br4 pa3 mb3 tutorial-tile" :key="index">
             <router-link :to="tutorial.url">
+              <div class="flex flex-row justify-between ">
               <h3 class="ma0 f3 fw7 navy">{{tutorial.title}}</h3>
               <img
                 :src="tutorialType(index).icon"
                 :alt="tutorialType(index).alt"
-                style="height: 54px" />
+                class="h2 ml3"/>
+              </div>
               <p class="f5 fw5 ma0 pt2 lh-copy white">{{tutorial.description}}</p>
             </router-link>
           </div>
