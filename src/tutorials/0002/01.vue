@@ -57,6 +57,7 @@ export default {
       lessonId: self.$attrs.lessonId,
       tutorialId: self.$attrs.tutorialId,
       text,
+      concepts,
       exercise,
       solution,
       validate

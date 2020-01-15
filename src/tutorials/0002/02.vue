@@ -69,6 +69,7 @@ export default {
       text,
       exercise,
       code,
+      concepts,
       solution,
       validate,
       modules
