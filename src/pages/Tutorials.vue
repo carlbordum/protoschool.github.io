@@ -8,8 +8,8 @@
         decentralized web by writing code and solving challenges.
       </p>
     </section>
-    <template v-for="(tutorial, index) in allTutorials">
-      <Tutorial :tutorial="tutorial" :key="index" :tutorialId="tutorialId(index)" />
+    <template v-for="(tutorial, tutorialId, index) in allTutorials">
+      <Tutorial :tutorial="tutorial" :key="index" :tutorialId="tutorialId" />
     </template>
   </div>
 </template>
@@ -17,8 +17,8 @@
 <script>
 import Header from '../components/Header.vue'
 import Tutorial from '../components/Tutorial.vue'
-import coursesList from '../static/courses.json'
-import tutorialsList from '../static/tutorials.json'
+import coursesList from '../static/courses.json' // array of 4-digit tutorial IDs (strings)
+import tutorialsList from '../static/tutorials.json' // object in which those 4-digit IDs are keys for tutorial objects
 
 export default {
   name: 'Tutorials',
@@ -27,15 +27,18 @@ export default {
     Tutorial
   },
   computed: {
-    allTutorials: () => coursesList.all.map((e) => tutorialsList[e])
+    allTutorials: () => {
+      let allTutorials = {}
+      coursesList.all.forEach(function (tutorialId) {
+        allTutorials[tutorialId] = tutorialsList[tutorialId]
+      })
+      return allTutorials
+    }
   },
   data: self => {
     return {
       tutorialsList
     }
-  },
-  methods: {
-    tutorialId: (index) => (index + 1).toString().padStart(4, '0')
   }
 }
 </script>
