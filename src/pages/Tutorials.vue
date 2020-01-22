@@ -8,8 +8,8 @@
         decentralized web by writing code and solving challenges.
       </p>
     </section>
-    <template v-for="(tutorial, tutorialId, index) in allTutorials">
-      <Tutorial :tutorial="tutorial" :key="index" :tutorialId="tutorialId" />
+    <template v-for="tutorial in allTutorials">
+      <Tutorial :tutorial="tutorial" :key="tutorial.tutorialId" :tutorialId="tutorial.tutorialId" />
     </template>
   </div>
 </template>
@@ -27,13 +27,14 @@ export default {
     Tutorial
   },
   computed: {
-    allTutorials: () => {
-      let allTutorials = {}
-      coursesList.all.forEach(function (tutorialId) {
-        allTutorials[tutorialId] = tutorialsList[tutorialId]
-      })
-      return allTutorials
-    }
+    allTutorials: () => coursesList.all.map(tutorialId => ({ ...tutorialsList[tutorialId], tutorialId }))
+    // allTutorials: () => {
+    //   let allTutorials = {}
+    //   coursesList.all.forEach(function (tutorialId) {
+    //     allTutorials[tutorialId] = tutorialsList[tutorialId]
+    //   })
+    //   return allTutorials
+    // }
   },
   data: self => {
     return {

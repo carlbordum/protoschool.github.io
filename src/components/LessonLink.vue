@@ -11,40 +11,33 @@
         </div>
         <div class="navy fw5 mw6">{{lesson.title}}</div>
       </div>
-      <img
-        :src="lessonType.icon"
-        :alt="lessonType.alt"
-        class="h2 ml3" />
+      <TypeIcon
+        :tutorialId="tutorialId"
+        :lessonId="isResources? 'resources' : lessonId"
+        class="h2 ml3"/>
     </div>
   </router-link>
 </template>
 
 <script>
 
-import codeIcon from '../static/images/code.svg'
-import readingIcon from '../static/images/reading.svg'
-import multipleChoiceIcon from '../static/images/multiple_choice.svg'
+import TypeIcon from '../components/TypeIcon.vue'
 
 export default {
   name: 'LessonLink',
-  props: [
-    'to',
-    'lessonNumber',
-    'lesson',
-    'lessonId'
-  ],
+  props: {
+    to: String,
+    lessonNumber: Number,
+    lesson: Object,
+    lessonId: String,
+    tutorialId: [String, undefined]
+  },
+  components: {
+    TypeIcon
+  },
   computed: {
     isResources: function () {
       return this.to.split('/')[2] === 'resources'
-    },
-    lessonType: function () {
-      if (this.lesson.types.includes('code')) {
-        return { icon: codeIcon, alt: 'coding icon' }
-      } else if (this.lesson.types.includes('multiple-choice')) {
-        return { icon: multipleChoiceIcon, alt: 'multiple choice icon' }
-      } else {
-        return { icon: readingIcon, alt: 'reading icon' }
-      }
     }
   },
   methods: {

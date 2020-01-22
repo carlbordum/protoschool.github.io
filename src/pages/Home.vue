@@ -49,7 +49,7 @@ import tutorialsList from '../static/tutorials.json'
 import { getTutorialType } from '../utils/tutorials'
 
 import codeIcon from '../static/images/code.svg'
-import readingIcon from '../static/images/reading.svg'
+import textIcon from '../static/images/text.svg'
 import multipleChoiceIcon from '../static/images/multiple_choice.svg'
 
 export default {
@@ -69,7 +69,7 @@ export default {
       } else if (type === 'multiple-choice') {
         return { icon: multipleChoiceIcon, alt: 'multiple choice icon' }
       } else {
-        return { icon: readingIcon, alt: 'reading icon' }
+        return { icon: textIcon, alt: 'text icon' }
       }
     }
   }

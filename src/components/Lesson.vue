@@ -12,9 +12,9 @@
             :lessonNumber="lessonNumber"
             :lessonsInTutorial="lessonsInTutorial"
             :lessonPassed="lessonPassed" />
-            <img
-              :src="lessonType.icon"
-              :alt="lessonType.alt"
+            <TypeIcon
+              :lessonId="isResources? 'resources' : lessonId"
+              :tutorialId="tutorialId"
               class="h2 ml3" />
           </div>
         <CongratulationsCallout
@@ -126,10 +126,8 @@ import Validator from './Validator.vue'
 import CongratulationsCallout from './CongratulationsCallout.vue'
 import { EVENTS } from '../static/countly'
 import { deriveShortname } from '../utils/paths'
-import { getCurrentTutorial, isTutorialPassed, getCurrentLesson } from '../utils/tutorials'
-import codeIcon from '../static/images/code.svg'
-import readingIcon from '../static/images/reading.svg'
-import multipleChoiceIcon from '../static/images/multiple_choice.svg'
+import { getCurrentTutorial, isTutorialPassed, getLesson } from '../utils/tutorials'
+import TypeIcon from './TypeIcon.vue'
 
 const MAX_EXEC_TIMEOUT = 5000
 
@@ -215,7 +213,8 @@ export default {
     Output,
     Info,
     Validator,
-    CongratulationsCallout
+    CongratulationsCallout,
+    TypeIcon
   },
   data: self => {
     const tutorial = getCurrentTutorial(self.$attrs.tutorialId)
@@ -224,7 +223,7 @@ export default {
       types: []
     }
     console.log('isResources', self.$attrs.isResources)
-    const lesson = self.$attrs.isResources ? resourcesLesson : getCurrentLesson(self.$attrs.tutorialId, self.$attrs.lessonId)
+    const lesson = self.$attrs.isResources ? resourcesLesson : getLesson(self.$attrs.tutorialId, self.$attrs.lessonId)
 
     return {
       lesson,
@@ -290,15 +289,6 @@ export default {
       const basePath = this.$route.path.slice(0, -2)
       const hasResources = this.$router.resolve(basePath + 'resources').route.name !== '404'
       return this.lessonNumber === this.lessonsInTutorial && hasResources
-    },
-    lessonType: function () {
-      if (this.exercise) {
-        return { icon: codeIcon, alt: 'coding icon' }
-      } else if (this.isMultipleChoiceLesson) {
-        return { icon: multipleChoiceIcon, alt: 'multiple choice icon' }
-      } else {
-        return { icon: readingIcon, alt: 'reading icon' }
-      }
     }
   },
   beforeCreate: function () {

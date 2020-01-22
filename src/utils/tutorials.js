@@ -1,16 +1,17 @@
 import tutorialsList from '../static/tutorials.json'
 
-// via tutorialId
+// returns tutorial object
 export const getCurrentTutorial = tutorialId => {
   return tutorialsList[tutorialId]
 }
-// if accessing from within the lesson via route
-export const getCurrentLesson = (tutorialId, lessonId) => {
+
+// returns lesson object
+export const getLesson = (tutorialId, lessonId) => {
   let lesson
   if (!lessonId) {
     lesson = {
       title: 'Resources',
-      types: []
+      types: ['resources']
     }
   } else {
     // get lesson object from tutorials.json
@@ -21,23 +22,40 @@ export const getCurrentLesson = (tutorialId, lessonId) => {
   return lesson
 }
 
+// returns URL for tutorial's landing page
 export const getTutorialFullUrl = tutorial => `${window.location.origin}/${tutorial.url}`
 
+// returns boolean - true if user has passed all lessons in the tutorial
 export const isTutorialPassed = tutorial => !!localStorage[`passed/${tutorial.url}`]
 
-// can access from anywhere with tutorialId
+// returns array of all lesson objects for specified tutorial
 export const getAllLessonsInTutorial = tutorialId => {
   return tutorialsList[tutorialId].lessons
 }
 
-// can access from anywhere with tutorialId
+// returns string representing tutorial type
 export const getTutorialType = tutorialId => {
   if (tutorialsList[tutorialId].lessons.some(lesson => lesson.types.includes('code'))) {
     return 'code'
   } else if (tutorialsList[tutorialId].lessons.some(lesson => lesson.types.includes('multiple-choice'))) {
     return 'multiple-choice'
   } else {
-    return 'reading'
+    return 'text'
+  }
+}
+
+// returns string representing lesson type
+export const getLessonType = (tutorialId, lessonId) => {
+  if (lessonId === 'resources') {
+    return 'resources'
+  }
+  const types = getLesson(tutorialId, lessonId).types
+  if (types.includes('code')) {
+    return 'code'
+  } else if (types.includes('multiple-choice')) {
+    return 'multiple-choice'
+  } else {
+    return 'text'
   }
 }
 

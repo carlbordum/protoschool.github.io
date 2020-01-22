@@ -22,9 +22,8 @@
             </h2>
             <span v-if="isTutorialPassed" class="ml2 f3">🏆</span>
           </div>
-          <img
-            :src="tutorialType.icon"
-            :alt="tutorialType.alt"
+          <TypeIcon
+            :tutorialId="tutorialId"
             class="h2 ml3"/>
         </div>
         <p class="f5 fw5 ma0 pt2 lh-copy charcoal-muted">{{tutorial.description}}</p>
@@ -36,10 +35,11 @@
                 :to="`/${tutorial.url}/${(index + 1).toString().padStart(2, 0)}`"
                 :lesson="lesson"
                 :lessonNumber="index + 1"
-                :lessonId="(index + 1).toString().padStart(2, 0)"/>
+                :lessonId="(index + 1).toString().padStart(2, 0)"
+                :tutorialId="tutorialId"/>
             </li>
           </template>
-          <LessonLink data-cy="lesson-link-resources" v-if="tutorial.resources" :to="resourcesLink" :lesson="resourcesLesson" />
+          <LessonLink data-cy="lesson-link-resources" v-if="tutorial.resources" :to="resourcesLink" :lesson="resourcesLesson" :tutorialId="tutorialId"/>
         </ul>
       </div>
     </div>
@@ -48,12 +48,10 @@
 
 <script>
 import LessonLink from '../components/LessonLink.vue'
-import { isTutorialPassed, getTutorialType } from '../utils/tutorials'
+import TypeIcon from '../components/TypeIcon.vue'
+import { isTutorialPassed } from '../utils/tutorials'
 import ipfsLogo from '../static/images/ipfs.svg'
 import libp2pLogo from '../static/images/libp2p.svg'
-import codeIcon from '../static/images/code.svg'
-import readingIcon from '../static/images/reading.svg'
-import multipleChoiceIcon from '../static/images/multiple_choice.svg'
 
 const resourcesLesson = {
   'title': 'More to explore',
@@ -68,7 +66,8 @@ export default {
     tutorialId: String
   },
   components: {
-    LessonLink
+    LessonLink,
+    TypeIcon
   },
   data: () => {
     return {
@@ -86,16 +85,6 @@ export default {
     },
     isTutorialPassed: function () {
       return isTutorialPassed(this.tutorial)
-    },
-    tutorialType: function () {
-      let type = getTutorialType(this.tutorialId)
-      if (type === 'code') {
-        return { icon: codeIcon, alt: 'coding icon' }
-      } else if (type === 'multiple-choice') {
-        return { icon: multipleChoiceIcon, alt: 'multiple choice icon' }
-      } else {
-        return { icon: readingIcon, alt: 'reading icon' }
-      }
     }
   }
 }
