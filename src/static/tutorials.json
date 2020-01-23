@@ -260,5 +260,46 @@
 				"description": "You've seen the IPFS Files API. Now explore the IPFS DAG API, where you'll use CIDs to create verifiable links between datasets."
 			}
 		]
+	},
+	"0006": {
+		"url": "the-anatomy-of-a-cid",
+		"project": "IPFS",
+		"title": "The Anatomy of a CID",
+		"description": "A content identifier, or CID, is a label used to point to material in IPFS. It doesn’t indicate where the content is stored, but it forms a kind of address based on the content itself.",
+		"lessons": [
+			"What is a CID"
+		],
+		"resources": [
+			{
+				"title": "JS-IPFS Files API",
+				"link": "https://github.com/ipfs/interface-js-ipfs-core/blob/master/SPEC/FILES.md",
+				"type": "docs",
+				"description": "Notice that these docs contain two sections, one for top-level methods relevant to files, which we learned about in this tutorial, and one for the Mutable File System (MFS)."
+			},
+			{
+				"title": "Understanding How IPFS Deals with Files",
+				"link": "https://youtu.be/Z5zNPwMDYGg",
+				"type": "video",
+				"description": "This course from IPFS Camp 2019 offers a deep exploration of how IPFS deals with files, including key concepts like immutability, content addressing, hashing, the anatomy of CIDs, what the heck a Merkle DAG is, and how chunk size affects file imports. It also introduces some the joys and pitfalls of the Mutable File System (MFS)."
+			},
+			{
+				"title": "The Lifecycle of Data in the DWeb",
+				"link": "https://youtu.be/fLUq0RkiTBA",
+				"type": "video",
+				"description": "Curious about what happens _after_ you've added files to IPFS? This course from IPFS Camp 2019 explores how peers discover and share files on the network, from providing to getting to pinning to deleting."
+			},
+			{
+				"title": "IPFS: Mutable File System (MFS)",
+				"link": "https://proto.school/#/mutable-file-system",
+				"type": "tutorial",
+				"description": "Wish adding files to IPFS felt more like using a traditional name-based file system? Explore the Mutable File System (MFS)."
+			},
+			{
+				"title": "P2P Data Links with Content Addressing",
+				"link": "https://proto.school/#/basics/",
+				"type": "tutorial",
+				"description": "You've seen the IPFS Files API. Now explore the IPFS DAG API, where you'll use CIDs to create verifiable links between datasets."
+			}
+		]
 	}
 }
