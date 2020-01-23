@@ -7,11 +7,24 @@
         Our interactive tutorials help you learn about the
         decentralized web by writing code and solving challenges.
       </p>
-        <span v-if="filterOutCoding" @click="toggleFilter" class="textLink ">View All Tutorials</span>
-        <span v-else @click="toggleFilter" class="textLink ">Hide Coding Tutorials</span>
+      <div class="mw7 center w100 tr">
+        <ToggleButton   :value="true"
+                        v-model="showCoding"
+                        color="#69c4cd"
+                        :sync="true"
+                        :name="'includeCodingTutorials'"
+                        :id="'includeCodingTutorials'"
+                        :externalLabel="'Include Coding Tutorials'"
+                        width="40"/>
+      </div>
+                    <!-- .navy { color: #0b3a53; }
+                    .navy-muted { color: #244e66; }
+                    .aqua { color: #69c4cd; }
+                    .aqua-muted { color: #9ad4db; } -->
+
     </section>
 
-    <template v-for="tutorial in (filterOutCoding? codelessTutorials : allTutorials)">
+    <template v-for="tutorial in (showCoding? allTutorials : codelessTutorials)">
       <Tutorial :tutorial="tutorial" :key="tutorial.tutorialId" :tutorialId="tutorial.tutorialId" />
     </template>
   </div>
@@ -23,12 +36,14 @@ import Tutorial from '../components/Tutorial.vue'
 import coursesList from '../static/courses.json' // array of 4-digit tutorial IDs (strings)
 import tutorialsList from '../static/tutorials.json' // object in which those 4-digit IDs are keys for tutorial objects
 import { getTutorialType } from '../utils/tutorials'
+import ToggleButton from '../components/ToggleButton.vue' // adapted locally from npm package 'vue-js-toggle-button'
 
 export default {
   name: 'Tutorials',
   components: {
     Header,
-    Tutorial
+    Tutorial,
+    ToggleButton
   },
   computed: {
     allTutorials: () => coursesList.all.map(tutorialId => ({ ...tutorialsList[tutorialId], tutorialId })),
@@ -39,12 +54,7 @@ export default {
   data: self => {
     return {
       tutorialsList,
-      filterOutCoding: false
-    }
-  },
-  methods: {
-    toggleFilter: function () {
-      this.filterOutCoding = !this.filterOutCoding
+      showCoding: true
     }
   }
 }

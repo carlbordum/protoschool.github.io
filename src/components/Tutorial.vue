@@ -3,7 +3,6 @@
     <div class="flex items-start pv4">
       <div class="project-label flex-none tc">
         <h1 class="ma0 mb2 f3 fw4">{{tutorial.project}}</h1>
-
         <img
           :src="tutorial.project === 'libp2p' ? libp2pLogo : ipfsLogo"
           :alt="tutorial.project"

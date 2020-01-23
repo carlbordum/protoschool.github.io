@@ -19,6 +19,7 @@ import NotFound from './pages/NotFound.vue'
 // Components
 import Landing from './components/Landing.vue'
 import ResourcesLesson from './components/ResourcesLesson.vue'
+
 // Lessons
 import T0001L01 from './tutorials/0001/01.vue'
 import T0001L02 from './tutorials/0001/02.vue'
