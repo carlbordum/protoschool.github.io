@@ -118,9 +118,9 @@ const routes = [
   { path: '/regular-files-api/07', component: T0005L07, props: { tutorialId: '0005' } },
   { path: '/regular-files-api/08', component: T0005L08, props: { tutorialId: '0005' } },
   // Tutorial 0006
-  { path: '/the-anatomy-of-a-cid', component: Landing, props: { tutorialId: '0006' } },
-  { path: '/the-anatomy-of-a-cid/resources', component: ResourcesLesson, props: { tutorialId: '0006' } },
-  { path: '/the-anatomy-of-a-cid/01', component: T0006L01, props: { tutorialId: '0006' } },
+  { path: '/anatomy-of-a-cid', component: Landing, props: { tutorialId: '0006' } },
+  { path: '/anatomy-of-a-cid/resources', component: ResourcesLesson, props: { tutorialId: '0006' } },
+  { path: '/anatomy-of-a-cid/01', component: T0006L01, props: { tutorialId: '0006' } },
   // 404
   { path: '*', name: '404', component: NotFound, props: { notFound: true } }
 ]

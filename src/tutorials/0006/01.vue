@@ -9,27 +9,23 @@
 import MultipleChoiceLesson from '../../components/MultipleChoiceLesson'
 import text from './01.md'
 
-// Question must be a string
-const question = "What's the meaning of life, the universe, and everything?"
+const question = 'By default, what is the cryptographic algorithm used by IPFS to generate CIDs?'
 
-// Choices must be an array of objects, each with the properties:
-// `answer` (string), `correct` (boolean), and `feedback` (string)
-// Only one answer can be correct.
 const choices = [
   {
-    answer: 'Some correct answer.',
+    answer: 'sha1',
+    correct: false,
+    feedback: 'Try again'
+  },
+  {
+    answer: 'sha2-256',
     correct: true,
-    feedback: 'Great job!'
+    feedback: 'That\'s correct!'
   },
   {
-    answer: 'Some incorrect answer',
+    answer: 'It uses a combination of sha1, sha2-256, sha3-256, sha3-512 and shake-256',
     correct: false,
-    feedback: 'Oops. Here\'s some clue about why that answer is wrong.'
-  },
-  {
-    answer: 'Some incorrect answer',
-    correct: false,
-    feedback: 'Sorry, here\'s some clue about why that answer is wrong.'
+    feedback: 'IPFS only uses one algorithm to generate a CID.'
   }
 ]
 
